@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KRDC — Links</title>
+  <meta name="description" content="[Sua bio curta aqui — ex: DJ / Produtor de música eletrônica]. Todos os links e sets de KRDC em um só lugar." />
+  <meta name="theme-color" content="#1B1B1B" />
+
+  <!-- Open Graph / compartilhamento -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="KRDC — Links" />
+  <meta property="og:description" content="[Sua bio curta aqui]. Todos os links e sets de KRDC em um só lugar." />
+  <meta property="og:image" content="src/img/krdc_black.png" />
+  <meta property="og:url" content="[URL FINAL DO SITE, ex: https://seuusuario.github.io/seurepo/]" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KRDC — Links" />
+  <meta name="twitter:description" content="[Sua bio curta aqui]. Todos os links e sets de KRDC em um só lugar." />
+  <meta name="twitter:image" content="src/img/krdc_black.png" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Google Fonts: Source Code Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Ruído/dither desenhado via canvas, cobre o fundo inteiro -->
+  <canvas id="dither-canvas" aria-hidden="true"></canvas>
+  <!-- Scanlines CRT sobrepostas -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+
+  <main id="main" class="page">
+
+    <!-- ===================== HEADER / PERFIL ===================== -->
+    <header class="profile" data-animate>
+      <div class="boot-line" id="boot-line" aria-live="polite">&gt; carregando sistema<span class="blink-cursor">_</span></div>
+
+      <div class="avatar-photo" data-animate>
+        <img id="avatar-img" src="src/img/avatar.png" alt="KRDC" class="avatar-photo__img" />
+      </div>
+
+      <h1 class="brand" data-animate>
+        <img id="brand-logo" src="src/img/krdc_white.png" alt="KRDC" class="brand__logo" />
+      </h1>
+
+      <p class="handle" data-animate>@[SEU_USUARIO]</p>
+      <p class="bio" data-animate>[Sua bio curta aqui — ex: DJ / Produtor de música eletrônica]</p>
+      <p class="tagline" data-animate>[SUA TAGLINE AQUI]</p>
+    </header>
+
+    <!-- ===================== REDES SOCIAIS ===================== -->
+    <section class="section" aria-labelledby="socials-heading" data-animate>
+      <h2 id="socials-heading" class="section__title">&gt; redes</h2>
+      <ul class="socials" id="socials-list"><!-- gerado via JS --></ul>
+    </section>
+
+    <!-- ===================== SETS ===================== -->
+    <section class="section" aria-labelledby="sets-heading" data-animate>
+      <h2 id="sets-heading" class="section__title">&gt; sets</h2>
+      <div class="sets" id="sets-list"><!-- gerado via JS --></div>
+    </section>
+
+    <!-- ===================== AGENDA =====================
+         Desativada a pedido — os dados continuam em js/data.js
+         (SITE_DATA.agenda) e a renderização em js/script.js
+         (renderAgenda). Para reativar: descomente a seção abaixo
+         e a chamada de renderAgenda() em script.js. -->
+    <!--
+    <section class="section" aria-labelledby="agenda-heading" data-animate>
+      <h2 id="agenda-heading" class="section__title">&gt; agenda</h2>
+      <div class="agenda" id="agenda-list"></div>
+    </section>
+    -->
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer" data-animate>
+      <p>
+        <a id="footer-email" class="footer__email" href="mailto:[SEU EMAIL DE CONTATO]">[SEU EMAIL DE CONTATO]</a>
+      </p>
+      <p class="footer__copy">© <span id="footer-year"></span> <span id="footer-name">KRDC</span>. Todos os direitos reservados.</p>
+    </footer>
+
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
