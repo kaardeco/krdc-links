@@ -8,10 +8,6 @@
 (function () {
   "use strict";
 
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
   /* --------------------------------------------------------------------
    * Ícones (SVG inline, estilo feather/lucide, sem dependência externa)
    * ------------------------------------------------------------------ */
@@ -116,9 +112,9 @@
       const body = el(
         "div",
         "set-card__body",
-        '<p class="set-card__label">' + (set.label || "SET") + "</p>" +
+        '<p class="set-card__label">' + (set.label || "Set") + "</p>" +
           '<p class="set-card__title">' + (set.title || "") + "</p>" +
-          '<span class="set-card__link">assistir / ouvir →</span>'
+          '<span class="set-card__link">Ouvir</span>'
       );
 
       const stretch = el("a", "set-card__stretch");
@@ -153,7 +149,7 @@
 
     if (events.length === 0) {
       wrap.appendChild(
-        el("div", "agenda__empty", "&gt; nenhuma data confirmada no momento.")
+        el("div", "agenda__empty", "Nenhuma data confirmada no momento.")
       );
       return;
     }
@@ -179,13 +175,13 @@
         ticket = el(
           "a",
           "agenda__ticket",
-          svgIcon("ticket", "agenda__ticket-icon") + " INGRESSO"
+          svgIcon("ticket", "agenda__ticket-icon") + " Ingresso"
         );
         ticket.href = eventItem.ticketUrl;
         ticket.target = "_blank";
         ticket.rel = "noopener noreferrer";
       } else {
-        ticket = el("span", "agenda__ticket", "EM BREVE");
+        ticket = el("span", "agenda__ticket", "Em breve");
         ticket.style.opacity = "0.5";
       }
 
@@ -212,14 +208,17 @@
     const brandLogo = document.getElementById("brand-logo");
     if (brandLogo && p.logo) brandLogo.src = p.logo;
 
-    const handle = document.querySelector(".handle");
+    const handle = document.getElementById("profile-handle");
     if (handle && p.handle) handle.textContent = p.handle;
 
-    const bio = document.querySelector(".bio");
+    const bio = document.getElementById("profile-bio");
     if (bio && p.bio) bio.textContent = p.bio;
 
-    const tagline = document.querySelector(".tagline");
+    const tagline = document.getElementById("profile-tagline");
     if (tagline && p.tagline) tagline.textContent = p.tagline;
+
+    const meta = document.getElementById("profile-meta");
+    if (meta) meta.textContent = p.meta || "";
 
     const footerEmail = document.getElementById("footer-email");
     if (footerEmail && f.email) {
@@ -235,84 +234,6 @@
   }
 
   /* --------------------------------------------------------------------
-   * Stagger: numera os elementos [data-animate] para o CSS escalonar
-   * ------------------------------------------------------------------ */
-  function prepareStaggerIndexes() {
-    document.querySelectorAll("[data-animate]").forEach((node, index) => {
-      node.style.setProperty("--stagger-index", String(index));
-    });
-  }
-
-  /* --------------------------------------------------------------------
-   * Efeito de boot / terminal no header
-   * ------------------------------------------------------------------ */
-  function runBootSequence(onDone) {
-    const bootLine = document.getElementById("boot-line");
-
-    if (prefersReducedMotion || !bootLine) {
-      document.body.classList.add("is-loaded");
-      if (onDone) onDone();
-      return;
-    }
-
-    const messages = ["carregando sistema", "conectando…", "pronto."];
-    let i = 0;
-
-    function typeNext() {
-      if (i >= messages.length) {
-        document.body.classList.add("is-loaded");
-        if (onDone) onDone();
-        return;
-      }
-      bootLine.innerHTML = "&gt; " + messages[i] + '<span class="blink-cursor">_</span>';
-      i += 1;
-      setTimeout(typeNext, 420);
-    }
-
-    typeNext();
-  }
-
-  /* --------------------------------------------------------------------
-   * Fundo: ruído/dither em canvas (leve, gerado uma vez e reaproveitado)
-   * ------------------------------------------------------------------ */
-  function initDitherCanvas() {
-    const canvas = document.getElementById("dither-canvas");
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    const SCALE = 3; // tamanho do "pixel" do grão
-    const DENSITY = 0.035; // fração de pixels com grão visível (esparso = sóbrio)
-
-    function draw() {
-      const w = Math.ceil(window.innerWidth / SCALE);
-      const h = Math.ceil(window.innerHeight / SCALE);
-      canvas.width = w;
-      canvas.height = h;
-      canvas.style.width = w * SCALE + "px";
-      canvas.style.height = h * SCALE + "px";
-
-      // Grão esparso e transparente (a maioria dos pixels fica com alpha 0)
-      const imageData = ctx.createImageData(w, h);
-      for (let i = 0; i < imageData.data.length; i += 4) {
-        const show = Math.random() < DENSITY;
-        imageData.data[i] = 255;
-        imageData.data[i + 1] = 255;
-        imageData.data[i + 2] = 255;
-        imageData.data[i + 3] = show ? Math.random() * 90 : 0;
-      }
-      ctx.putImageData(imageData, 0, 0);
-    }
-
-    draw();
-
-    let resizeTimer;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(draw, 250);
-    });
-  }
-
-  /* --------------------------------------------------------------------
    * Init
    * ------------------------------------------------------------------ */
   document.addEventListener("DOMContentLoaded", () => {
@@ -320,8 +241,10 @@
     renderSocials();
     renderSets();
     // renderAgenda(); // seção desativada a pedido — reative junto com a <section> comentada em index.html
-    prepareStaggerIndexes();
-    initDitherCanvas();
-    runBootSequence();
+
+    // Único momento de entrada: revela o hero (ver .hero[data-animate] no CSS)
+    requestAnimationFrame(() => {
+      document.body.classList.add("is-loaded");
+    });
   });
 })();

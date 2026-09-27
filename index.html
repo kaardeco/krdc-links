@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KRDC — Links</title>
   <meta name="description" content="DJ & Producer. Todos os links e sets de KRDC em um só lugar." />
-  <meta name="theme-color" content="#1B1B1B" />
+  <meta name="theme-color" content="#101012" />
 
   <!-- Open Graph / compartilhamento -->
   <meta property="og:type" content="website" />
@@ -22,49 +22,66 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
-  <!-- Google Fonts: Source Code Pro -->
+  <!-- Google Fonts: Big Shoulders Display (títulos), Archivo (corpo), Source Code Pro (dados) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Archivo:wght@400;500;600;700&family=Source+Code+Pro:wght@500;600&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1608245377444458');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1608245377444458&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
-  <!-- Ruído/dither desenhado via canvas, cobre o fundo inteiro -->
-  <canvas id="dither-canvas" aria-hidden="true"></canvas>
-  <!-- Scanlines CRT sobrepostas -->
-  <div class="scanlines" aria-hidden="true"></div>
+  <!-- Marcas de registro nos cantos, extraídas da identidade do banner -->
+  <span class="corner-mark corner-mark--tl" aria-hidden="true"></span>
+  <span class="corner-mark corner-mark--br" aria-hidden="true"></span>
 
   <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
   <main id="main" class="page">
 
     <!-- ===================== HEADER / PERFIL ===================== -->
-    <header class="profile" data-animate>
-      <div class="boot-line" id="boot-line" aria-live="polite">&gt; carregando sistema<span class="blink-cursor">_</span></div>
-
-      <div class="avatar-photo" data-animate>
-        <img id="avatar-img" src="src/img/avatar.png" alt="KRDC" class="avatar-photo__img" />
+    <header class="hero" data-animate>
+      <div class="hero__frame">
+        <div class="hero__photo">
+          <img id="avatar-img" src="src/img/avatar.png" alt="KRDC" class="hero__photo-img" />
+        </div>
+        <h1 class="hero__mark">
+          <img id="brand-logo" src="src/img/krdc_white.png" alt="KRDC" class="hero__mark-img" />
+        </h1>
       </div>
 
-      <h1 class="brand" data-animate>
-        <img id="brand-logo" src="src/img/krdc_white.png" alt="KRDC" class="brand__logo" />
-      </h1>
-
-      <p class="handle" data-animate>@[SEU_USUARIO]</p>
-      <p class="bio" data-animate>[Sua bio curta aqui — ex: DJ / Produtor de música eletrônica]</p>
-      <p class="tagline" data-animate>[SUA TAGLINE AQUI]</p>
+      <p class="handle" id="profile-handle">@[SEU_USUARIO]</p>
+      <p class="bio" id="profile-bio">[Sua bio curta aqui — ex: DJ / Produtor de música eletrônica]</p>
+      <p class="tagline" id="profile-tagline">[SUA TAGLINE AQUI]</p>
+      <p class="meta" id="profile-meta"></p>
     </header>
 
     <!-- ===================== REDES SOCIAIS ===================== -->
-    <section class="section" aria-labelledby="socials-heading" data-animate>
-      <h2 id="socials-heading" class="section__title">&gt; redes</h2>
+    <section class="section" aria-labelledby="socials-heading">
+      <h2 id="socials-heading" class="section__title">Redes</h2>
       <ul class="socials" id="socials-list"><!-- gerado via JS --></ul>
     </section>
 
     <!-- ===================== SETS ===================== -->
-    <section class="section" aria-labelledby="sets-heading" data-animate>
-      <h2 id="sets-heading" class="section__title">&gt; sets</h2>
+    <section class="section" aria-labelledby="sets-heading">
+      <h2 id="sets-heading" class="section__title">Sets</h2>
       <div class="sets" id="sets-list"><!-- gerado via JS --></div>
     </section>
 
@@ -74,14 +91,14 @@
          (renderAgenda). Para reativar: descomente a seção abaixo
          e a chamada de renderAgenda() em script.js. -->
     <!--
-    <section class="section" aria-labelledby="agenda-heading" data-animate>
-      <h2 id="agenda-heading" class="section__title">&gt; agenda</h2>
+    <section class="section" aria-labelledby="agenda-heading">
+      <h2 id="agenda-heading" class="section__title">Agenda</h2>
       <div class="agenda" id="agenda-list"></div>
     </section>
     -->
 
     <!-- ===================== FOOTER ===================== -->
-    <footer class="footer" data-animate>
+    <footer class="footer">
       <p>
         <a id="footer-email" class="footer__email" href="mailto:[SEU EMAIL DE CONTATO]">[SEU EMAIL DE CONTATO]</a>
       </p>

@@ -17,6 +17,7 @@ const SITE_DATA = {
     handle: "@krdcmusic",
     bio: "DJ / Producer",
     tagline: "Desync / Groove E-Music / In Trip Club",
+    meta: "DJ — Est. 1996 — RN / Brasil", // linha de identidade, mesmo texto do banner OG
   },
 
   // ---------------------------------------------------------------------
