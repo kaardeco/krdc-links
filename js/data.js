@@ -37,15 +37,15 @@ const SITE_DATA = {
   sets: {
     soundcloud: {
       label: "SET // SOUNDCLOUD",
-      title: "Sync Studio Contest",
-      url: "https://soundcloud.com/krdcmusic/krdc-sync-studio-contest",
-      thumbnail: "https://i1.sndcdn.com/artworks-9S75M9dL9xYrgIpf-gsMk5A-t500x500.png",
+      title: "After:Hours Session #01",
+      url: "https://soundcloud.com/krdcmusic/after-hours-session-01",
+      thumbnail: "https://i1.sndcdn.com/artworks-lHxmUrFlwNHrK3gy-HNMy4g-t500x500.jpg",
     },
     youtube: {
       label: "SET // SOUNDCLOUD",
-      title: "Warm Up @ Genesis / SOS Sul - Speedtest",
-      url: "https://soundcloud.com/krdcmusic/warmup-genesis-o-resgate",
-      thumbnail: "https://i1.sndcdn.com/artworks-Gbzj60fHgYm2Gz4y-1tr1pg-t500x500.jpg",
+      title: "Sync Studio Contest",
+      url: "https://soundcloud.com/krdcmusic/krdc-sync-studio-contest",
+      thumbnail: "https://i1.sndcdn.com/artworks-9S75M9dL9xYrgIpf-gsMk5A-t500x500.png",
     },
   },
 
